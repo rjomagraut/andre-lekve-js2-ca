@@ -1,0 +1,1 @@
+export const localhostUrl = "http://localhost:1337/";
