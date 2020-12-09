@@ -47,10 +47,6 @@ function removeFromfavourites(event) {
         if (fetchFavourites !== favourite.id) {
             return true;
         }
-        else {
-        const newFavourites = favourites.filter((favourite) => favourite.id !== id);
-        saveFavourites(newFavourites);
-    }
     });
 
     favourites = updatedFavouriteList;
@@ -58,6 +54,3 @@ function removeFromfavourites(event) {
     createFavourite()
 }
 
-function saveFavourites(favourites) {
-    localStorage.setItem("favourite", JSON.stringify(favourites));
-}

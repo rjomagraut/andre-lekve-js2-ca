@@ -12,11 +12,12 @@ const inFavourites = getFavourites();
 
 export async function createArticle() {
     const container = document.querySelector(".article-container");
-
+    
     try {
         const response = await fetch(articlesUrl);
         const json = await response.json();
         findAuthor(articlesUrl, container);
+
         container.innerHTML = "";
         
         json.forEach(function (article) {
@@ -34,7 +35,7 @@ export async function createArticle() {
             if (doesArticleExist) {
                 changeIcon = "fa-trash-alt";
             }
-
+            
             container.innerHTML += `<div class="article">
                                         <div class="icon-container"><i class="icon fas ${changeIcon}" data-id="${article.id}" data-author="${article.author}" data-title="${article.title}"></i></div>
                                         <h3 >${article.title}</h3>
