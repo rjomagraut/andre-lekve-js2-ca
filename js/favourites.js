@@ -4,18 +4,17 @@ import {createMenu} from "./components/common/createMenu.js";
 
 createMenu()
 
-let savedArticles = [];
-savedArticles = getFavourites();
-
-const favourites = getFavourites();
+let favourites = getFavourites();
 
 const favouritesContainer = document.querySelector(".article-container");
 
-(async function favArray() {
+async function createFavourite() {
+
+    favouritesContainer.innerHTML = "";
 
 try {favourites.forEach((favourite) => {
     favouritesContainer.innerHTML += `<div class="favourite">
-                                            <div class="icon-container"><i class="icon fas fa-trash-alt" data-item="${favourite.title}"></i></div>
+                                            <div class="icon-container"><i class="icon fas fa-trash-alt" data-id="${favourite.id}"></i></div>
                                             <h3>${favourite.title}</h3>
                                             <p>Author: <span class="author-font">${favourite.author}<span></p>
                                         </div>`;
@@ -30,26 +29,35 @@ try {favourites.forEach((favourite) => {
         displayMessage("error", error, ".article-container");
     }
 
-const removeFromFavourites = document.querySelectorAll(".icon-container");
+    const removeIcon = document.querySelectorAll(".icon-container");
 
-removeFromFavourites.forEach(function (remove) {
-        remove.addEventListener("click", removeFromArray);
+    removeIcon.forEach(function (remove) {
+            remove.addEventListener("click", removeFromfavourites);
 });
 
-})();
+};
+createFavourite()
 
-
-function removeFromArray(event) {
+function removeFromfavourites(event) {
     console.log(event);
 
-    const deleteThisarticle = event.target.dataset.item;
-    
-    const updatedFavourites = savedArticles.filter(function (favourite) {
-        if (deleteThisarticle !== favourite) {
+    const fetchFavourites = event.target.dataset.id;
+
+    const updatedFavouriteList = favourites.filter(function (favourite) {
+        if (fetchFavourites !== favourite.id) {
             return true;
         }
-        console.log(updatedFavourites);
+        else {
+        const newFavourites = favourites.filter((favourite) => favourite.id !== id);
+        saveFavourites(newFavourites);
+    }
     });
 
-    savedArticles = updatedFavourites;
+    favourites = updatedFavouriteList;
+
+    createFavourite()
+}
+
+function saveFavourites(favourites) {
+    localStorage.setItem("favourite", JSON.stringify(favourites));
 }
