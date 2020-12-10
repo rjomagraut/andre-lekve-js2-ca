@@ -52,6 +52,10 @@ h4 {
   color: rgb(190, 0, 127);
 }
 
+.menu a:hover {
+  font-weight: bold;
+}
+
 .favourite-nav .menu a.active {
   color: rgb(0, 120, 190);
 }
@@ -64,6 +68,32 @@ textarea {
   font-family: sans-serif;
   font-size: 14px;
   border: none;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.clear-button {
+  margin-left: 1rem;
+  width: 100px;
+  height: 30px;
+  background: rgb(0, 120, 190);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.clear-button:hover {
+  background: rgb(190, 0, 127);
+  color: white;
+}
+
+.clear-button:active {
+  background: rgb(190, 0, 127, 0.5);
+  color: white;
 }
 
 .icon {
