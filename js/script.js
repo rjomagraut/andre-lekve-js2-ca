@@ -16,21 +16,22 @@ export async function createArticle() {
     try {
         const response = await fetch(articlesUrl);
         const json = await response.json();
-        findAuthor(articlesUrl, container);
+        
 
         container.innerHTML = "";
         
         json.forEach(function (article) {
 
             let changeIcon = "fa-save";
+
+            findAuthor(articlesUrl, container);
  
-        const doesArticleExist = inFavourites.find(function (favourite) {      
-            return parseInt(favourite.id) === parseInt(article.id);
-            });
+            const doesArticleExist = inFavourites.find(function (favourite) {      
+                return parseInt(favourite.id) === parseInt(article.id);
+                });
         
             console.log(inFavourites)
             console.log(doesArticleExist)
-
 
             if (doesArticleExist) {
                 changeIcon = "fa-trash-alt";

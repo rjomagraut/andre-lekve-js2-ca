@@ -8,40 +8,25 @@ export function getFavourites() {
     }
 }
 
-const tokenKey = "token";
-const userKey = "user";
+const jwtKey = "jwt";
 
-export function saveToken(token) {
-    saveToStorage(tokenKey, token);
+export function saveJwt(jwt) {
+    saveToLocalStorage(jwtKey, jwt);
 }
 
-export function getToken() {
-    return getFromStorage(tokenKey);
+export function getJwt() {
+    return getFromLocalStorage(jwtKey);
 }
 
-export function saveUser(user) {
-    saveToStorage(userKey, user);
-}
-
-export function getUsername() {
-    const user = getFromStorage(userKey);
-
-    if (user) {
-        return user.username;
-    }
-
-    return null;
-}
-
-function saveToStorage(key, value) {
+function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-function getFromStorage(key) {
+function getFromLocalStorage(key) {
     const value = localStorage.getItem(key);
 
     if (!value) {
-        return [];
+        return null;
     }
 
     return JSON.parse(value);

@@ -1,6 +1,6 @@
 import {createArticle} from "../script.js"
 
-export function findAuthor(article, container) {
+export function findAuthor(articlesUrl, container) {
 
     const searchAuthors = document.querySelector("input#authors");
 
@@ -11,8 +11,8 @@ export function findAuthor(article, container) {
 
         const searchValue = event.target.value.trim().toLowerCase();
     
-        const filteredAuthors = article.filter(function (search) {
-            if (search[getField].toLowerCase().startsWith(searchValue)) {
+        const filteredAuthors = articlesUrl.filter(function (article) {
+            if (article[getField].toLowerCase().startsWith(searchValue)) {
                 return true;
             }
         });
