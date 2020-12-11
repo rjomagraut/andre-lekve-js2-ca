@@ -1,24 +1,22 @@
 import {createArticle} from "../script.js"
 
+
 export function findAuthor(authors, container) {
+    const search = document.querySelector("input#authors");
 console.log(authors)
-    const searchAuthors = document.querySelector("input#authors");
-
-    function filterArticles(event) {
-
-        const getField = event.target.dataset.field;
-
-        const searchValue = event.target.value.trim().toLowerCase();
-    
-        const filteredAuthors = authors.filter(function (search) {
-            if (search[getField].toLowerCase().startsWith(searchValue)) {
+    search.onkeyup = function (event) {
+        if(event.target.value == "") {
+            createArticle(authors, container);
+        }
+        else {
+            const searchValue = event.target.value.trim().toLowerCase();
+            const filteredAuthors = authors.filter(function (search) {
+            if (search.author.toLowerCase().startsWith(searchValue)) {
                 return true;
             }
         });
+            createArticle(filteredAuthors, container);
+        }
         
-        createArticle(filteredAuthors, container);
-    }
-
-    searchAuthors.addEventListener("keyup", filterArticles);
-   
-}
+    };
+}console.log(createArticle);

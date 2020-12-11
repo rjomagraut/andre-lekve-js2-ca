@@ -9,7 +9,6 @@ createMenu()
 const articlesUrl = localhostUrl + "articles";
 
 const inFavourites = getFavourites();
-
 export async function createArticle() {
     const container = document.querySelector(".article-container");
     
@@ -17,11 +16,12 @@ export async function createArticle() {
         const response = await fetch(articlesUrl);
         const json = await response.json();
         const authors = json;
-        
         findAuthor(authors, container);
+
         container.innerHTML = "";
         
-        json.forEach(function (article) {
+        authors.forEach(function (article) {
+            
             let changeIcon = "fa-save";
 
             const doesArticleExist = inFavourites.find(function (favourite) {      
@@ -80,3 +80,6 @@ createArticle()
 function saveFavourites(favourites) {
     localStorage.setItem("favourite", JSON.stringify(favourites));
 }
+
+
+

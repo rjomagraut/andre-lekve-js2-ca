@@ -6,8 +6,6 @@ createMenu()
 
 let favourites = getFavourites();
 
-let clearButton = document.querySelector(".clear-button");
-
 const favouritesContainer = document.querySelector(".article-container");
 
 async function createFavourite() {
@@ -55,7 +53,21 @@ function removeFromFavourites(event) {
 
     createFavourite()
 }
-  clearButton.forEach((button) => {
-        button.addEventListener("click", );
+
+const clearButton = document.querySelectorAll(".clear-button");
+
+clearButton.forEach(function (clear) {
+        clear.addEventListener("click", clearAllFavourites);
+});
+
+function clearAllFavourites(event) {
+    console.log(event);
+
+    const updatedFavouriteList = favourites.filter(function () {
+        localStorage.clear();
     });
 
+    favourites = updatedFavouriteList;
+
+    createFavourite()
+}
